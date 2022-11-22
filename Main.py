@@ -31,6 +31,29 @@ empresa.addSetor(Setor(nome="Compras", localizacao="Primeiro andar", centro_de_c
 for setor in empresa.setores:
     print(setor)
 
+colab01 = Colaborador("Marlise", 28.00, "59354001")
+presidente = Colaborador("Luis", 350.00, "1")
+
+rh.addColab(colab01)
+
+for i in rh.colabs():
+    print(i)
+
+
+empresa.setores[1].addColabs([
+    Colaborador("Joana", 18.00, "cj3"),
+    Colaborador("Juliane", 20.00, "cj4"),
+    Colaborador("Estela", 23.00, "cj8"),
+    Colaborador("Sheila", 22.00, "cj9"),
+    Colaborador("Shimejia", 30.00, "cj2"),
+    presidente
+])
+
+for y in empresa.setores[1].colabs():
+    print(y)
+
+
+
 
 # colaborador = Colaborador(nome="Luiz", salario=1.549, id="14622", setor="Compras")
 

@@ -1,10 +1,25 @@
 # import utilidades
 from utilidades import is_cnpj_valido
 
+class Colaborador:
+    nome = ""
+    salario = 0.0
+    id = ""
+
+    def __init__(self, nome:str, salario:float=0.0, id:str=""):
+        self.nome = nome
+        self.salario = salario
+        self.id = id
+    
+    def __str__(self):
+        return (f"({self.id}) {self.nome}")
+
+
 class Setor:
     nome = ""
     localizacao = ""
     centro_de_custo = ""
+    colaboradores = []
     def __init__(self, nome="", localizacao = "", centro_de_custo = ""):
         self.getNome(nome)
         self.localizacao = localizacao
@@ -16,16 +31,26 @@ class Setor:
             self.nome = "Visitante"
         else:
             self.nome = nome
-    def __str__(self):
-        # return f"""SETOR:{self.nome}
-        # LOCALIZACAO: {self.localizacao}"""
-        return f"SETOR:{self.nome}\n\t\tLOCALIZACAO: {self.localizacao}"
     
     def informacoes_setor(self, nome, localizacao, centro_de_custo):
         return f"O setor {self.nome} está localizado na {self.localizacao} e pertence o centro de custo {self.centro_de_custo}"
         return f"O setor {nome} está localizado na {localizacao} e pertence o centro de custo {centro_de_custo}"
-    def informacoes_colaborador(self,nome, pessoa = ""):
-        return f"O nome deste setor é {nome} e trabalha o funcionário {pessoa}"
+    
+    def colabs(self):
+        return self.colaboradores
+    
+    def addColab(self, colab:Colaborador):
+        self.colaboradores.append(colab)
+
+    def addColabs(self, colabs:list):
+        for colab in colabs:
+            self.addColab(colab)
+
+
+    def __str__(self):
+        # return f"""SETOR:{self.nome}
+        # LOCALIZACAO: {self.localizacao}"""
+        return f"SETOR:{self.nome}\n\t\tLOCALIZACAO: {self.localizacao}"
 
 class Empresa:
     nome = ""
@@ -47,36 +72,3 @@ class Empresa:
             raise TypeError("Desculpa, mas você é burro.")
         self.setores.append(setor)
 
-class Colaborador:
-    nome = ""
-    salario = 0.0
-    id = ""
-    setor = Setor
-    """
-        O dunder init é chamado toda vez que uma classe é instanciada em um objeto
-    """
-    def __init__(self, nome:str, setor:Setor, salario:float=0.0, id:str=""):
-        self.nome = nome
-        self.salario = salario
-        self.id = id
-        self.setor = setor
-
-    def infoSetor(self):
-        return self.setor
-    """
-    O dunder str serve para descrever em forma de string uma classe
-    """
-    def __str__(self):
-        return (f"O colaboradors {self.nome} recebe {self.salario} por mês, cujo id é {self.id} no setor {self.setor}")
-        
-    nome = ""
-    cnpj = ""
-    colaboradores = []
-    def __init__(self, nome, cnpj):
-        self.nome = nome
-        self.cnpj = cnpj
-    def __str__(self):
-        retorno = f"---{self.nome}---"
-        for nome, cnpj in self.nome, self.cnpj:
-            retorno (f"As empresas são {nome} e {cnpj}")
-        return retorno
