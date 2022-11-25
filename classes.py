@@ -1,13 +1,19 @@
+class Agencia:
+    def __init__(self, numero):
+        self.numero = numero
+    def __str__(self):
+        return self.numero
+
 class ContaBancaria:
     numero:str = ""
     agencia:str = ""
-    saldo:float = 0.00
+    # saldo:float = 0.00
 
-    def __init__(self,numero:str,agencia:str,saldo:float=0.00):
+    def __init__(self,numero:str,agencia:Agencia,saldo:float=0.00):
+        self.saldo = 0.00
         self.numero = numero
         self.agencia = agencia
         self.set_saldo(saldo)
-        self.saldo = saldo
     
     def set_saldo(self, saldo:float) -> float:
         try:
@@ -32,9 +38,6 @@ class ContaCorrente(ContaBancaria):
 class ContaSalario(ContaBancaria):
     def __init__(self, numero:str, agencia:str, saldo:float="") -> None:
         super().__init__(numero, agencia, saldo)
-    def set_saldo(self, saldo):
-        
-        if super() == self:
-            print("nao e possivel adcionar saldo nessa conta")
-            exit()
-        super().set_saldo(saldo)
+    # def set_saldo(self, saldo):
+    
+    #     super().set_saldo(saldo)
