@@ -1,67 +1,41 @@
-from classes import Setor, Colaborador, Empresa
-from utilidades import removee_acecuacoes,is_cnpj_valido
+from classes import ContaBancaria, ContaCorrente, ContaSalario
 
 
-print(removee_acecuacoes("Noção"))
+contas = [
+    ContaBancaria("2387654","0001", 10),
+    ContaBancaria("2387653","0001"),
+    ContaBancaria("2387652","0003", 345.27)
+]
 
-# setor = Setor(nome="Recursos humanos", localizacao="Segundo andar", centro_de_custo="Administrativo")
-# ti = Setor("T.I", centro_de_custo="Administrativo", localizacao="Filial 003")
-# print(ti)
+print(contas[0].get_saldo())
 
-# colega001 = Colaborador("Marcelo", ti, 10000, "98765")
-
-# print(colega001.setor.localizacao)
-
-# print(colega001.infoSetor())
-
-# cnpj = ""
-
-# while len(cnpj) == 0:
-#     userdata = input("")
-#     if(is_cnpj_valido(userdata)):
-#         cnpj = userdata
-
-empresa = Empresa(nome="Apple", cnpj="84.854.728/0001-70")
-
-rh = Setor(nome="Recursos humanos", localizacao="Segundo andar", centro_de_custo="Administrativo")
-
-empresa.addSetor(rh)
-empresa.addSetor(Setor(nome="Compras", localizacao="Primeiro andar", centro_de_custo="Administrativo"))
-
-for setor in empresa.setores:
-    print(setor)
-
-colab01 = Colaborador("Marlise", 28.00, "59354001")
-presidente = Colaborador("Luis", 350.00, "1")
-
-rh.addColab(colab01)
-
-for i in rh.colabs():
-    print(i)
+for conta_bancaria in contas:
+    print(conta_bancaria)
 
 
-empresa.setores[1].addColabs([
-    Colaborador("Joana", 18.00, "cj3"),
-    Colaborador("Juliane", 20.00, "cj4"),
-    Colaborador("Estela", 23.00, "cj8"),
-    Colaborador("Sheila", 22.00, "cj9"),
-    Colaborador("Shimejia", 30.00, "cj2"),
-    presidente
-])
+contCor = [
+    ContaCorrente("659845","0001", 5000000),
+    ContaCorrente("659844","0001", 500),
+    ContaCorrente("654895","0044", 45.69)
+]
 
-for y in empresa.setores[1].colabs():
-    print(y)
+#contCor[1].set_saldo(200.00)
+
+print(f"R$ {contCor[1].get_saldo()}")
+
+for conta_corrente in contCor:
+    print(conta_corrente)
 
 
+contSal = [
+    ContaSalario("65695","0001", 4000),
+    ContaSalario("54953","0044", 325.65),
+    ContaSalario("54694","0001", 40.00)
+]
+
+for conta_salario in contSal:
+    print(conta_salario)
+
+print(contSal[2].set_saldo(400.00))
 
 
-# colaborador = Colaborador(nome="Luiz", salario=1.549, id="14622", setor="Compras")
-
-# colaborador = Colaborador("Luiz",1.549,"14622","Compras")
-
-# empresa = [
-#     Colaborador("Luiza", 10.0, "123", "RH"),
-#     Colaborador("Marcia", 22.0, "123", "RH"),
-#     Colaborador("Suzana", 36.0, "123", "RH"),
-#     Colaborador("Vera", 87.0, "123", "RH")
-# ]
